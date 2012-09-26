@@ -1,0 +1,2 @@
+<?php
+$msg = 'Empty cast, no member!';

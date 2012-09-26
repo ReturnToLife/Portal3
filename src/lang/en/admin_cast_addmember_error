@@ -1,0 +1,3 @@
+<?php
+$msg = 'An error occured while adding member to cast.<br />Reasons can be:<ul><li>You don\'t have permission to add member to this cast</li><li>The parent cast does not exists</li><li>The login does not exists</li><li>The login is already a member of this cast</li></ul>';
+

@@ -1,0 +1,2 @@
+<?php
+$msg = 'An error occured while adding cast.<br />Reasons can be:<ul><li>You don\'t have permission to add sub-cast to this cast</li><li>The parent cast does not exists</li><li>The name is invalid or already taken</li></ul>';

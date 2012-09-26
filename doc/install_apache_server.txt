@@ -1,0 +1,22 @@
+sudo apt-get install aptitude
+sudo aptitude install git
+sudo aptitude install mg						# light version of emacs
+alias emacs=mg
+mkdir .ssh
+scp db0@db0.fr:.ssh/id_rsa* .ssh/					# ssh keys in github account
+git clone https://github.com/ReturnToLife/Return--to_life--.git
+cd Return--to_life--/
+emacs README 
+sudo aptitude install apache2 apache2-utils php5 php5-dev php5-gd	# install apache2 server + php
+sudo emacs /etc/apache2/ports.conf					# configure
+sudo emacs /etc/apache2/httpd.conf 					# configure return directory
+sudo emacs /etc/php5/apache2/php.ini 					# configure show php errors
+sudo /etc/init.d/apache2 restart					# launch server
+sudo aptitude install mysql-server php5-mysql				# install mysql
+sudo /etc/init.d/mysql restart						# launch mysql
+mysql -u root -p							# mysql> CREATE DATABASE returntolife;
+wget https://raw.github.com/db0company/Ionis-Users-Informations/master/ionisinfosql.class.php
+sudo aptitude install libssh2-php					# libssh2
+sudo /etc/init.d/apache2 restart
+chmod 777 .								# www-data need access to your directory to get users informations
+

@@ -1,0 +1,2 @@
+<?php
+$msg = 'An error occured while deleting member from cast.<br />Reasons can be:<ul><li>You don\'t have permission to delete members of this cast</li><li>This cast does not exists</li><li>This member does not exist and/or is not in this cast</li></ul>';
