@@ -1,0 +1,2 @@
+<?php
+$msg = 'An error occured while deleting a right.<br />Reasons can be:<ul><li>You don\'t have permission to delete this right</li><li>This right does not exists</li></ul>';

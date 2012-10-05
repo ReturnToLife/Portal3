@@ -1,0 +1,2 @@
+<?php
+$msg = 'An error occured while adding right to cast.<br />Reasons can be:<ul><li>You don\'t have permission to add this right to this cast</li><li>At least one field is invalid</li><li>This right already exists</li></ul>';

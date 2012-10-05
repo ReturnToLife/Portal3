@@ -3,5 +3,6 @@
 bootstrap
 Cast.class.php
 CastManager.class.php
+Rights.class.php
 glyphicons*.png
 jquery*.js

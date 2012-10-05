@@ -17,6 +17,8 @@ class		 	Portal
       $this->login = new Login;
     else
       $this->login = unserialize($_SESSION['login']);
+    global $login;
+    $login = $this->login;
   }
 
   public function	__destruct()
@@ -35,7 +37,10 @@ class		 	Portal
     // else
     //   \View\view('logout_form');
     $page = \View\getPage();
-    \View\viewPage($page, \View\modelPage($page));
+    $infos = \View\modelPage($page);
+    if (isset($infos['rollback_page']))
+      $page = $infos['rollback_page'];
+    \View\viewPage($page, $infos);
     return (true);
   }
 

@@ -16,7 +16,11 @@ function	model_admin_getmenu()
 		'home' => array('name' => $lang->msg('title_home'),
 				'url' => \Page\getUrl(array('admin' => 'home'))),
 		'casts' => array('name' => 'Casts',
-				 'url' => \Page\getUrl(array('admin' => 'casts'))),
+				 'url' => \Page\getUrl(array('admin' => 'casts',
+							     'cast' => 'view'))),
+		'rights' => array('name' => ucwords($lang->msg('rights')),
+				  'url' => \Page\getUrl(array('admin' => 'rights',
+							      'right' => 'view'))),
 		));
 }
 
@@ -35,10 +39,11 @@ function	model_admin_getpageinfo($page) // string
 
 function	model_admin()
 {
-  $args[noheader] = true;
-  $args[menu] = model_admin_getmenu();
-  $args[page] = model_admin_getpage($args[menu]);
-  $args[info] = model_admin_getpageinfo($args[page]);
+  $args['noheader'] = true;
+  $args['menu'] = model_admin_getmenu();
+  $args['page'] = model_admin_getpage($args['menu']);
+  try { $args['info'] = model_admin_getpageinfo($args['page']); }
+  catch (Exception $e) { $_GET['admin'] = 'error'; }
   return ($args);
 }
 

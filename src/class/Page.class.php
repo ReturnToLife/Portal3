@@ -2,6 +2,9 @@
 
 namespace Page;
 
+global $def_include_dir;
+include_once($def_include_dir.'tools.php');
+
 function	getPage()
 {
   // todo: here you can put some url rewriting treatment
@@ -32,6 +35,6 @@ function	getURL($params) // array string => string
     $args[$key] = $value;
   $url = '?';
   foreach ($args as $key => $value)
-    $url .= $key.'='.$value.'&';
+    $url .= protect($key).'='.protect($value).'&';
   return ($url);
 }

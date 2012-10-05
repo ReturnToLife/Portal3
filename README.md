@@ -31,11 +31,12 @@ $> mysql -u yourlogin -p < return-to_life.sql
 $> wget https://github.com/db0company/Ionis-Users-Informations/blob/master/ionisinfo.class.php
 ```
 
-4. Get the casts classes from the Web-Service:
+4. Get the casts and right classes from the Web-Service:
 ```shell
 $> cd src/class/
 $> wget https://raw.github.com/db0company/Ionis-Users-Informations-Web-Service/master/ws/Cast.class.php
 $> wget https://raw.github.com/db0company/Ionis-Users-Informations-Web-Service/master/ws/CastManager.class.php
+$> wget https://raw.github.com/db0company/Ionis-Users-Informations-Web-Service/master/ws/Rights.class.php
 $> cd ../..
 ```
 

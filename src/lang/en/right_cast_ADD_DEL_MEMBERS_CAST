@@ -1,0 +1,2 @@
+<?php
+$msg = 'Add/Delete members to/from a cast and its subcasts';

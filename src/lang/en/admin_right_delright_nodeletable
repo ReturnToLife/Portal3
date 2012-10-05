@@ -1,0 +1,2 @@
+<?php
+$msg = 'You can\'t delete any right.';

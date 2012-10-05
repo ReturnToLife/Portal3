@@ -15,8 +15,7 @@ function	view_admin_header()
 function	view_admin_menu($args)
 {
   global	$lang;
-  echo '<div class="menu">';
-
+  echo '<div class="menu well span3">';
   foreach ($args['menu'] as $info)
     echo '<a href="',$info['url'],'"><div class="button">', $info['name'],'</div></a>';
   echo '</div>';
@@ -28,12 +27,12 @@ function	view_admin_page($args)
   $filename = $def_page_dir.'/admin/'.$args['page'].'.php';
   if (!file_exists($filename))
     throw new Exception('admin page not found');
-  echo '<div class="page">';
+  echo '<div class="page span9">';
   include_once($filename);
   $fun = 'view_admin_'.$args['page'];
   if (!function_exists($fun))
     throw new Exception('admin view function not found');
-  $fun($args[info]);
+  $fun($args['info']);
   echo '</div>';
 }
 
@@ -41,7 +40,11 @@ function	view_page_admin($args)
 {
   echo '<div id="admin">';
   view_admin_header();
+  echo '<div class="content">';
+  echo '<div class="row-fluid">';
   view_admin_menu($args);
   view_admin_page($args);
+  echo '</div>';
+  echo '</div>';
   echo '</div>';
 }

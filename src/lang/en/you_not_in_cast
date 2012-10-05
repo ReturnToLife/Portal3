@@ -1,0 +1,2 @@
+<?php
+$msg = 'You are not in any cast!';

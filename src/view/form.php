@@ -6,28 +6,45 @@
   //			  'value' => mixed,
   //			  'name' => string);
 
-function	view_form($infos)
+function	view_form($infos, $mini = false)
 {
-  echo '<form method="post" class="well">';
-  foreach ($infos as $info)
+  echo '<form method="post" class="', ($mini ? 'mini_form' : 'well'),'" ',
+    (isset($infos['action']) ? 'action="'.$infos['action'].'"' : ''),'>';
+  foreach ($infos as $key => $info)
     {
-      $function_name = 'view_form_'.$info[type];
-      if (!function_exists($function_name))
-	throw new Exception("invalid form type");
-      echo '<div class="row-fluid">';
-      view_form_label($info[label], $info[name]);
-      echo '<div class="span9">';
-      $function_name($info[name], $info[value]);
-      echo '</div>';
-      echo '</div>';
+      if (!$key || $key != 'action') {
+	$function_name = 'view_form_'.$info[type];
+	if (!function_exists($function_name))
+	  throw new Exception("invalid form type");
+	if ($info['type'] != 'hidden')
+	  echo '<div class="row-fluid">';
+	view_form_label($info[label], $info[name]);
+	if ($info['type'] != 'hidden')
+	  echo '<div class="span9">';
+	$function_name($info[name], $info[value]);
+	if ($info['type'] != 'hidden') {
+	  echo '</div>';
+	  echo '</div>';
+	}
+      }
     }
   echo '</form>';
 }
 
+function	view_mini_form($infos) {
+  view_form($infos, true);
+}
+
 function	view_form_label($label, $name)
 {
-  echo '<div class="span3"><label for="',$name,'">', $label,
-    '</label></div>';
+  if (!empty($label))
+    echo '<div class="span3"><label for="',$name,'">', $label,
+      '</label></div>';
+}
+
+function	view_form_hidden($name, $value) {
+  echo '<input type="hidden" name="', $name,
+    '" value="', $value,'" />';
 }
 
 function	view_form_text($name, $value)
