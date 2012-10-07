@@ -33,7 +33,6 @@ function	view_admin_casts_menu($title = '') {
 }
 
 function	display_cast($cast /* object */) {
-  echo $cast->getFirstParentName();
   $color = \Portal\getColorFromCateg($cast->getFirstParentName());
   echo '<div class="well cast bg_', $color,' border_', $color,'">';
   echo '<h3 class="color_', $color,'">', $cast->getName(), '</h3>';
@@ -77,7 +76,7 @@ function	view_admin_casts_browse_all($info) {
 function	print_members($members) {
   global $lang, $iui;
   if (empty($members)) {
-    echo $lang->msg('emptycast');
+    //    echo $lang->msg('emptycast');
     return ;
   }
   $by_line = count($members) > 12 ? 12 : 6;
@@ -104,6 +103,7 @@ function	view_admin_casts_add($info)
   \View\view('form', array(array('type' => 'select',
 				 'label' => $lang->msg('admin_cast_addsublabel'),
 				 'value' => $info['casts']->getPrintableArray(),
+				 'selected' => intval($_POST['parent']),
 				 'name' => 'parent'),
 			   array('type' => 'text',
 				 'label' => $lang->msg('name'),
@@ -138,6 +138,7 @@ function	view_admin_casts_addmember($info)
   \View\view('form', array(array('type' => 'select',
 				 'label' => $lang->msg('add').' '.$lang->msg('member'),
 				 'value' => $info['casts']->getPrintableArray(),
+				 'selected' => intval($_POST['cast']),
 				 'name' => 'cast'),
 			   array('type' => 'text',
 				 'label' => 'Login',
@@ -155,6 +156,7 @@ function	view_admin_casts_delmember($info)
   \View\view('form', array(array('type' => 'select',
 				 'label' => $lang->msg('del').' '.$lang->msg('member'),
 				 'value' => $info['casts']->getPrintableArray(),
+				 'selected' => intval($_POST['cast']),
 				 'name' => 'cast'),
 			   array('type' => 'text',
 				 'label' => 'Login',

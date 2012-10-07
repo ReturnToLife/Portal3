@@ -4,6 +4,7 @@
   // [input_name] = array('type' => string,
   //			  'label' => string,
   //			  'value' => mixed,
+  //			  'selected' => mixed,
   //			  'name' => string);
 
 function	view_form($infos, $mini = false)
@@ -21,7 +22,7 @@ function	view_form($infos, $mini = false)
 	view_form_label($info[label], $info[name]);
 	if ($info['type'] != 'hidden')
 	  echo '<div class="span9">';
-	$function_name($info[name], $info[value]);
+	$function_name($info[name], $info[value], $info['selected']);
 	if ($info['type'] != 'hidden') {
 	  echo '</div>';
 	  echo '</div>';
@@ -42,18 +43,18 @@ function	view_form_label($label, $name)
       '</label></div>';
 }
 
-function	view_form_hidden($name, $value) {
+function	view_form_hidden($name, $value, $selected) {
   echo '<input type="hidden" name="', $name,
     '" value="', $value,'" />';
 }
 
-function	view_form_text($name, $value)
+function	view_form_text($name, $value, $selected)
 {
   echo '<input type="text" name="', $name,
     '" value="', $value, '" />';
 }
 
-function	view_form_textarea($name, $value)
+function	view_form_textarea($name, $value, $selected)
 {
   echo '<textarea name="', $name,
     '">', $value, '</textarea>';  
@@ -75,21 +76,23 @@ function	view_form_check_list($name, $values)
   //   '[]" ', ($value ? 'checked' : ''),'/>';
 }
 
-function	view_form_radio_list($name, $value)
+function	view_form_radio_list($name, $value, $selected)
 {
   
 }
 
-function	view_form_select($name, $value)
+function	view_form_select($name, $value, $selected)
 {
   // value : array of string (name) => string (value)
   echo '<select name="', $name,'">';
   foreach ($value as $option_name => $option_value)
-    echo '<option value="',$option_name,'">',$option_value,'</option>';
+    echo '<option value="',$option_name,'"',
+    ($option_name == $selected ? ' selected' : ''),
+    '>',$option_value,'</option>';
   echo '</select>';
 }
 
-function	view_form_submit($name, $value)
+function	view_form_submit($name, $value, $selected)
 {
   echo '<input class="btn" type="submit" name="',$name,'" value="',$value,'">';
 }
