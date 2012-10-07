@@ -22,6 +22,10 @@ function	view_admin_rights_menu($title = '') {
 // available options = my, delete
 function	view_admin_rights_view_table($casts_rights, $option = 'my') {
   global $lang;
+  if (empty($casts_rights)) {
+    view_alert($lang->msg('you_no_right'), 'info');
+    return ;
+  }
   echo '<table class="table table-striped table-hover table-bordered">';
   echo '<tr>',
     '<th>';
@@ -72,12 +76,14 @@ function	view_admin_rights_view($info) {
   view_admin_rights_view_table($info['rights_view']['rights']);
 }
 
-function	get_right_types_array($info) {
+function	get_right_types_array($info, $with_give_right = true) {
   global	$lang;
   $right_types = $info['rights']->getRightTypes();
   if (!empty($right_types))
     foreach ($right_types as $right_type)
-      $rights[$right_type] = $lang->msg('right_cast_'.$right_type);  
+      if (!$with_give_right ||
+	  ($with_give_right && $right_type != 'GIVE_RIGHT_TO_CAST'))
+	$rights[$right_type] = $lang->msg('right_cast_'.$right_type);
   return $rights;
 }
 
@@ -91,7 +97,7 @@ function	view_admin_rights_add($info) {
 				 'value' => $info['casts']->getPrintableArray()),
 			   array('type' => 'select',
 				 'label' => $lang->msg('right_type'),
-				 'value' => get_right_types_array($info),
+				 'value' => get_right_types_array($info, false),
 				 'name' => 'right_type'),
 			   array('type' => 'submit',
 				 'value' => $lang->msg('next_form'),
@@ -143,6 +149,6 @@ function	view_admin_rights($info) {
     view_admin_rights_menu();
   }
   else
-    view_admin_rights_menu($_GET['right']);    
+    view_admin_rights_menu($_GET['right']);
   $fun($info);
 }
