@@ -467,7 +467,8 @@ label {
 /* Cast */
 
 .cast {
-
+    max-height: 200px;
+    overflow: auto;
 }
 
 .cast h6 {
@@ -479,9 +480,15 @@ label {
     text-align: center;
     background: rgb(255, 255, 255);
     background: rgba(255, 255, 255, 0.3);
-    padding: 1%;
+    padding: 1px;
     border-radius: 5px 5px;
     -moz-border-radius: 5px;
+    margin-bottom: 1%;
+    overflow: hidden;
+}
+
+.cast .span1 {
+    font-size: 0.7em;
 }
 
 /* Admin */
